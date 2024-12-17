@@ -1,0 +1,159 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal.light {
+  --modal-bg: #ffffff;
+  --modal-text: #333333;
+  --modal-border: #e0e0e0;
+}
+
+.modal.dark {
+  --modal-bg: #2a2a2a;
+  --modal-text: #ffffff;
+  --modal-border: #555555;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--modal-border);
+  padding-bottom: 15px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--modal-text);
+  transition: transform 0.3s ease;
+}
+
+.close-button:hover {
+  transform: rotate(90deg);
+}
+
+.modal-content {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ai-feature {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    max-height: 95%;
+    padding: 20px;
+  }
+}
+
+/* Animated gradient background */
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffecd2, #a1c4fd, #c2e9fb);
+  background-size: 500% 500%;
+  animation: gradientBG 20s ease infinite;
+  opacity: 0.15;
+  z-index: -1;
+  border-radius: 12px;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+@keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideOut { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-50px); opacity: 0; } }
+
+@keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes zoomOut { from { transform: scale(1); opacity: 1; } to { transform: scale(0.5); opacity: 0; } }
+
+@keyframes rotateIn { from { transform: rotate(-180deg) scale(0.5); opacity: 0; } to { transform: rotate(0) scale(1); opacity: 1; } }
+@keyframes rotateOut { from { transform: rotate(0) scale(1); opacity: 1; } to { transform: rotate(180deg) scale(0.5); opacity: 0; } }
+
+@keyframes bounceIn { 0% { transform: scale(0.1); opacity: 0; } 60% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes bounceOut { 0% { transform: scale(1); opacity: 1; } 60% { transform: scale(1.2); opacity: 0.7; } 100% { transform: scale(0.1); opacity: 0; } }
+
+@keyframes flipIn { from { transform: perspective(400px) rotateX(90deg); opacity: 0; } to { transform: perspective(400px) rotateX(0deg); opacity: 1; } }
+@keyframes flipOut { from { transform: perspective(400px) rotateX(0deg); opacity: 1; } to { transform: perspective(400px) rotateX(90deg); opacity: 0; } }
+
+@keyframes swingIn { 0% { transform: rotateX(-100deg); opacity: 0; } 100% { transform: rotateX(0deg); opacity: 1; } }
+@keyframes swingOut { 0% { transform: rotateX(0deg); opacity: 1; } 100% { transform: rotateX(-100deg); opacity: 0; } }
+
+@keyframes expandIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes expandOut { from { transform: scale(1); opacity: 1; } to { transform: scale(1.5); opacity: 0; } }
+
+@keyframes shakeIn { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); } 20%, 40%, 60%, 80% { transform: translateX(10px); } }
+@keyframes shakeOut { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(10px); } 20%, 40%, 60%, 80% { transform: translateX(-10px); } }
+
+/* Apply animations */
+.modal-overlay.fade, .modal.fade { animation: fadeIn 0.3s ease-out; }
+.modal-overlay.fade.closing, .modal.fade.closing { animation: fadeOut 0.3s ease-in; }
+
+.modal-overlay.slide, .modal.slide { animation: slideIn 0.3s ease-out; }
+.modal-overlay.slide.closing, .modal.slide.closing { animation: slideOut 0.3s ease-in; }
+
+.modal-overlay.zoom, .modal.zoom { animation: zoomIn 0.3s ease-out; }
+.modal-overlay.zoom.closing, .modal.zoom.closing { animation: zoomOut 0.3s ease-in; }
+
+.modal-overlay.rotate, .modal.rotate { animation: rotateIn 0.3s ease-out; }
+.modal-overlay.rotate.closing, .modal.rotate.closing { animation: rotateOut 0.3s ease-in; }
+
+.modal-overlay.bounce, .modal.bounce { animation: bounceIn 0.3s ease-out; }
+.modal-overlay.bounce.closing, .modal.bounce.closing { animation: bounceOut 0.3s ease-in; }
+
+.modal-overlay.flip, .modal.flip { animation: flipIn 0.3s ease-out; }
+.modal-overlay.flip.closing, .modal.flip.closing { animation: flipOut 0.3s ease-in; }
+
+.modal-overlay.swing, .modal.swing { animation: swingIn 0.3s ease-out; }
+.modal-overlay.swing.closing, .modal.swing.closing { animation: swingOut 0.3s ease-in; }
+
+.modal-overlay.expand, .modal.expand { animation: expandIn 0.3s ease-out; }
+.modal-overlay.expand.closing, .modal.expand.closing { animation: expandOut 0.3s ease-in; }
+
+.modal-overlay.shake, .modal.shake { animation: shakeIn 0.5s ease-out; }
+.modal-overlay.shake.closing, .modal.shake.closing { animation: shakeOut 0.5s ease-in; }
+
